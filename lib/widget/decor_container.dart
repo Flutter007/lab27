@@ -6,23 +6,17 @@ class DecorContainer extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-        appBar: AppBar(
-          backgroundColor: Colors.white54,
-          title: Text('EasyContacts!',
-              style: Theme.of(context).textTheme.headlineSmall),
-        ),
-        body: Container(
-          decoration: BoxDecoration(
-            gradient: LinearGradient(
-                begin: Alignment.topCenter,
-                end: Alignment.bottomRight,
-                colors: [
-                  Colors.yellowAccent.shade400,
-                  Colors.yellowAccent.shade100,
-                ]),
-          ),
-          child: child,
-        ));
+    return Container(
+      decoration: BoxDecoration(
+        gradient: LinearGradient(
+            begin: Alignment.topCenter,
+            end: Alignment.bottomRight,
+            colors: [
+              Colors.yellowAccent.shade400,
+              Colors.yellowAccent.shade100,
+            ]),
+      ),
+      child: child,
+    );
   }
 }

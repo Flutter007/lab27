@@ -1,7 +1,7 @@
 class Contact {
   final String name;
   final String surname;
-  final int phone;
+  final String phone;
   final String email;
   final DateTime birthDay;
   final int counter;

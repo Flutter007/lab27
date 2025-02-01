@@ -15,32 +15,33 @@ class ContactCard extends StatelessWidget {
     return GestureDetector(
       onTap: openInfo,
       child: Card(
+          color: Colors.white,
           child: Padding(
-        padding: const EdgeInsets.all(7),
-        child: Column(
-          children: [
-            Row(
+            padding: const EdgeInsets.all(7),
+            child: Column(
               children: [
-                IconButton(
-                  onPressed: () {},
-                  icon: Icon(Icons.contact_mail_outlined),
-                ),
-                SizedBox(
-                  width: 15,
-                ),
-                Text(
-                  '${contact.name} ${contact.surname}',
-                  style: Theme.of(context).textTheme.titleMedium,
-                ),
-                SizedBox(
-                  width: 180,
-                ),
-                Icon(Icons.cake_rounded),
+                Row(
+                  children: [
+                    IconButton(
+                      onPressed: openInfo,
+                      icon: Icon(Icons.contact_mail_outlined),
+                    ),
+                    SizedBox(
+                      width: 15,
+                    ),
+                    Text(
+                      '${contact.name} ${contact.surname}',
+                      style: Theme.of(context).textTheme.titleMedium,
+                    ),
+                    SizedBox(
+                      width: 180,
+                    ),
+                    Icon(Icons.cake_rounded),
+                  ],
+                )
               ],
-            )
-          ],
-        ),
-      )),
+            ),
+          )),
     );
   }
 }
