@@ -17,13 +17,46 @@ class _HWState extends State<HW> {
     Contact(
       name: 'Alexey',
       surname: 'Brug',
-      phone: '0999707555',
+      phone: '0999-707-555',
       email: 'alekseybrug@gmail.com',
-      birthDay: DateTime.now(),
+      birthDay: DateTime(2004, 07, 19),
       counter: 1,
       isBirthDay: false,
     ),
+    Contact(
+      name: 'Mike',
+      surname: 'Tyson',
+      phone: '0555-555-555',
+      email: 'tysonLev@gmail.com',
+      birthDay: DateTime(1996, 06, 30),
+      counter: 2,
+      isBirthDay: false,
+    ),
+    Contact(
+      name: 'Vladimir',
+      surname: 'Putin',
+      phone: '+7 777-777-777',
+      email: 'putinVlad@mail.ru',
+      birthDay: DateTime(1952, 10, 07),
+      counter: 3,
+      isBirthDay: false,
+    ),
+    Contact(
+      name: 'Vladick',
+      surname: 'Nephew',
+      phone: 'None',
+      email: 'None',
+      birthDay: DateTime.now(),
+      counter: 4,
+      isBirthDay: false,
+    ),
   ];
+  void removeContact(Contact contact) {
+    setState(() {
+      contacts.remove(contact);
+      print(contacts.length);
+    });
+  }
 
   void addContact(Contact newContact) {
     setState(() {
@@ -71,6 +104,7 @@ class _HWState extends State<HW> {
         child: HomeScreen(
           contacts: contacts,
           openInfo: openInfoContactSheet,
+          removeContact: removeContact,
         ),
       ),
     );

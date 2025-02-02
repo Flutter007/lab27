@@ -50,6 +50,12 @@ class _AddContactState extends State<AddContact> {
     Navigator.pop(context);
   }
 
+  void cancelFunc() {
+    setState(() {
+      Navigator.pop(context);
+    });
+  }
+
   void onBirthDayTap() async {
     final now = DateTime.now();
     final firstDate = DateTime(now.year - 100, now.month, now.day);
@@ -142,6 +148,7 @@ class _AddContactState extends State<AddContact> {
                   onTap: onBirthDayTap,
                   readOnly: true,
                   controller: dateController,
+                  textAlign: TextAlign.center,
                   decoration: InputDecoration(
                     label: Text('BirthDay!'),
                   ),
@@ -150,13 +157,26 @@ class _AddContactState extends State<AddContact> {
               SizedBox(width: 15),
             ],
           ),
+          SizedBox(height: 20),
           Row(
             children: [
               Expanded(
-                  child: ElevatedButton(
-                onPressed: isFull ? tapSave : null,
-                child: Text('Save'),
-              )),
+                child: ElevatedButton(
+                  style: ElevatedButton.styleFrom(
+                      backgroundColor: Colors.green.shade200),
+                  onPressed: isFull ? tapSave : null,
+                  child: Text('Save'),
+                ),
+              ),
+              SizedBox(width: 10),
+              Expanded(
+                child: ElevatedButton(
+                  style: ElevatedButton.styleFrom(
+                      backgroundColor: Colors.red.shade200),
+                  onPressed: cancelFunc,
+                  child: Text('Cancel'),
+                ),
+              ),
             ],
           ),
         ],

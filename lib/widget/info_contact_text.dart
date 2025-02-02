@@ -13,14 +13,29 @@ class InfoContactText extends StatelessWidget {
         vertical: 10,
       ),
       child: Expanded(
-        child: Text(
-          textAlign: TextAlign.left,
-          '$txt : $variable',
-          style: GoogleFonts.alexandria(
-            color: Colors.black,
-            fontSize: 20,
-            fontWeight: FontWeight.bold,
-          ),
+        child: Column(
+          children: [
+            if (variable.isNotEmpty)
+              Text(
+                textAlign: TextAlign.left,
+                '$txt : $variable',
+                style: GoogleFonts.alexandria(
+                  color: Colors.black,
+                  fontSize: 20,
+                  fontWeight: FontWeight.bold,
+                ),
+              )
+            else
+              Text(
+                textAlign: TextAlign.left,
+                '$txt : None',
+                style: GoogleFonts.alexandria(
+                  color: Colors.black,
+                  fontSize: 20,
+                  fontWeight: FontWeight.bold,
+                ),
+              ),
+          ],
         ),
       ),
     );

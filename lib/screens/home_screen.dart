@@ -5,11 +5,13 @@ import 'package:lab27/widget/contact_card.dart';
 class HomeScreen extends StatelessWidget {
   final List<Contact> contacts;
   final void Function(Contact) openInfo;
+  final void Function(Contact) removeContact;
 
   const HomeScreen({
     super.key,
     required this.contacts,
     required this.openInfo,
+    required this.removeContact,
   });
 
   @override
@@ -28,6 +30,7 @@ class HomeScreen extends StatelessWidget {
                       .map((contact) => ContactCard(
                             contact: contact,
                             openInfo: () => openInfo(contact),
+                            removeContact: removeContact,
                           ))
                       .toList(),
                 ),
