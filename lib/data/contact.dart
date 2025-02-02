@@ -3,8 +3,9 @@ class Contact {
   final String surname;
   final String phone;
   final String email;
-  final DateTime birthDay;
-  final int counter;
+  DateTime birthDay;
+  int counter;
+  bool isBirthDay;
 
   Contact({
     required this.name,
@@ -13,5 +14,6 @@ class Contact {
     required this.email,
     required this.birthDay,
     required this.counter,
+    required this.isBirthDay,
   });
 }

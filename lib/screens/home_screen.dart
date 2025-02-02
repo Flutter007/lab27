@@ -4,8 +4,13 @@ import 'package:lab27/widget/contact_card.dart';
 
 class HomeScreen extends StatelessWidget {
   final List<Contact> contacts;
-  final void Function() openInfo;
-  const HomeScreen({super.key, required this.contacts, required this.openInfo});
+  final void Function(Contact) openInfo;
+
+  const HomeScreen({
+    super.key,
+    required this.contacts,
+    required this.openInfo,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -20,8 +25,10 @@ class HomeScreen extends StatelessWidget {
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: contacts
-                      .map((contact) =>
-                          ContactCard(contact: contact, openInfo: openInfo))
+                      .map((contact) => ContactCard(
+                            contact: contact,
+                            openInfo: () => openInfo(contact),
+                          ))
                       .toList(),
                 ),
               ),

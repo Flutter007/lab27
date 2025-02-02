@@ -3,6 +3,7 @@ import 'package:lab27/data/contact.dart';
 import 'package:lab27/screens/home_screen.dart';
 import 'package:lab27/widget/add_contact.dart';
 import 'package:lab27/widget/decor_container.dart';
+import 'package:lab27/widget/info_contact.dart';
 
 class HW extends StatefulWidget {
   const HW({super.key});
@@ -14,15 +15,19 @@ class HW extends StatefulWidget {
 class _HWState extends State<HW> {
   List<Contact> contacts = [
     Contact(
-        name: 'Alexey',
-        surname: 'Brug',
-        phone: '0999707555',
-        email: 'alekseybrug@gmail.com',
-        birthDay: DateTime(2004, 7, 19),
-        counter: 1),
+      name: 'Alexey',
+      surname: 'Brug',
+      phone: '0999707555',
+      email: 'alekseybrug@gmail.com',
+      birthDay: DateTime.now(),
+      counter: 1,
+      isBirthDay: false,
+    ),
   ];
+
   void addContact(Contact newContact) {
     setState(() {
+      newContact.counter = contacts.length + 1;
       contacts.add(newContact);
     });
   }
@@ -36,9 +41,14 @@ class _HWState extends State<HW> {
     );
   }
 
-  // void showContactInfo(Contact contact){
-  //   showModalBottomSheet(context: context, builder: ))
-  // }
+  void openInfoContactSheet(Contact contact) {
+    showModalBottomSheet(
+      context: context,
+      builder: (ctx) => InfoContact(
+        contact: contact,
+      ),
+    );
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -60,7 +70,7 @@ class _HWState extends State<HW> {
       body: DecorContainer(
         child: HomeScreen(
           contacts: contacts,
-          openInfo: openAddContactSheet,
+          openInfo: openInfoContactSheet,
         ),
       ),
     );

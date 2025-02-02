@@ -1,9 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:lab27/data/contact.dart';
+import 'package:lab27/helpers/formatted_date.dart';
 
 class AddContact extends StatefulWidget {
   final void Function(Contact newContact) saveContact;
-  const AddContact({super.key, required this.saveContact});
+
+  const AddContact({
+    super.key,
+    required this.saveContact,
+  });
 
   @override
   State<AddContact> createState() => _AddContactState();
@@ -14,19 +19,55 @@ class _AddContactState extends State<AddContact> {
   var surname = '';
   var phone = '';
   var email = '';
+  late int counter = 1;
   var birthDay = DateTime.now();
-  var counter = 1;
+  final dateController = TextEditingController();
+
+  @override
+  void initState() {
+    super.initState();
+    dateController.text = formatDate(birthDay);
+  }
 
   void tapSave() {
+    final selectedBirthDay = DateTime(
+      birthDay.year,
+      birthDay.month,
+      birthDay.day,
+    );
+
     final addContact = Contact(
-        name: name,
-        surname: surname,
-        phone: phone,
-        email: email,
-        birthDay: birthDay,
-        counter: counter);
+      name: name,
+      surname: surname,
+      phone: phone,
+      email: email,
+      birthDay: selectedBirthDay,
+      counter: counter,
+      isBirthDay: false,
+    );
     widget.saveContact(addContact);
+
     Navigator.pop(context);
+  }
+
+  void onBirthDayTap() async {
+    final now = DateTime.now();
+    final firstDate = DateTime(now.year - 100, now.month, now.day);
+    final lastDate = DateTime(now.year, now.month, now.day);
+
+    final finalDate = await showDatePicker(
+      context: context,
+      firstDate: firstDate,
+      lastDate: lastDate,
+      initialDate: birthDay,
+    );
+
+    if (finalDate != null) {
+      setState(() {
+        birthDay = finalDate;
+        dateController.text = formatDate(finalDate);
+      });
+    }
   }
 
   @override
@@ -90,6 +131,23 @@ class _AddContactState extends State<AddContact> {
                   ),
                 ),
               ),
+            ],
+          ),
+          Row(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              SizedBox(
+                width: 200,
+                child: TextField(
+                  onTap: onBirthDayTap,
+                  readOnly: true,
+                  controller: dateController,
+                  decoration: InputDecoration(
+                    label: Text('BirthDay!'),
+                  ),
+                ),
+              ),
+              SizedBox(width: 15),
             ],
           ),
           Row(
