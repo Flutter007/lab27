@@ -5,14 +5,14 @@ import 'package:lab27/widget/add_contact.dart';
 import 'package:lab27/widget/decor_container.dart';
 import 'package:lab27/widget/info_contact.dart';
 
-class HW extends StatefulWidget {
-  const HW({super.key});
+class Lab27 extends StatefulWidget {
+  const Lab27({super.key});
 
   @override
-  State<HW> createState() => _HWState();
+  State<Lab27> createState() => _HWState();
 }
 
-class _HWState extends State<HW> {
+class _HWState extends State<Lab27> {
   List<Contact> contacts = [
     Contact(
       name: 'Alexey',
@@ -28,7 +28,7 @@ class _HWState extends State<HW> {
       surname: 'Tyson',
       phone: '0555-555-555',
       email: 'tysonLev@gmail.com',
-      birthDay: DateTime(1996, 06, 30),
+      birthDay: DateTime(1966, 06, 30),
       counter: 2,
       isBirthDay: false,
     ),
@@ -54,7 +54,6 @@ class _HWState extends State<HW> {
   void removeContact(Contact contact) {
     setState(() {
       contacts.remove(contact);
-      print(contacts.length);
     });
   }
 
@@ -74,11 +73,18 @@ class _HWState extends State<HW> {
     );
   }
 
+  void closeInfo() {
+    setState(() {
+      Navigator.pop(context);
+    });
+  }
+
   void openInfoContactSheet(Contact contact) {
     showModalBottomSheet(
       context: context,
       builder: (ctx) => InfoContact(
         contact: contact,
+        closeInfo: closeInfo,
       ),
     );
   }
@@ -96,6 +102,7 @@ class _HWState extends State<HW> {
             icon: Icon(
               Icons.add,
               color: Colors.yellow.shade900,
+              size: 30,
             ),
           ),
         ],

@@ -33,7 +33,7 @@ class ContactCard extends StatelessWidget {
           child: Card(
             color: Colors.white,
             child: Padding(
-              padding: const EdgeInsets.all(7),
+              padding: const EdgeInsets.all(12),
               child: Column(
                 children: [
                   Row(
@@ -43,6 +43,7 @@ class ContactCard extends StatelessWidget {
                         '№ ${contact.counter.toString()}',
                         style: theme,
                       ),
+                      SizedBox(width: 5),
                       Icon(Icons.people_alt, size: 30),
                       SizedBox(
                         width: 15,
@@ -53,8 +54,11 @@ class ContactCard extends StatelessWidget {
                           style: theme,
                         ),
                       ),
+                      SizedBox(width: 5),
                       Icon(
-                        contact.isBirthDay ? Icons.cake_rounded : Icons.timer,
+                        contact.isBirthDay
+                            ? Icons.cake_rounded
+                            : Icons.sentiment_satisfied_alt_outlined,
                         size: 35,
                       )
                     ],

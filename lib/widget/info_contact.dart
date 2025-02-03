@@ -5,11 +5,18 @@ import 'package:lab27/widget/info_contact_text.dart';
 
 class InfoContact extends StatelessWidget {
   final Contact contact;
-  const InfoContact({super.key, required this.contact});
+  final void Function() closeInfo;
+  const InfoContact({
+    super.key,
+    required this.contact,
+    required this.closeInfo,
+  });
 
   @override
   Widget build(BuildContext context) {
-    final bd = formatDate(contact.birthDay);
+    final theme = Theme.of(context);
+    final titleMediumTheme = theme.textTheme.titleMedium!;
+    final bDay = formatDate(contact.birthDay);
     return Container(
       width: double.infinity,
       padding: EdgeInsets.all(15),
@@ -21,7 +28,21 @@ class InfoContact extends StatelessWidget {
           InfoContactText(txt: 'Surname', variable: contact.surname),
           InfoContactText(txt: 'Phone', variable: contact.phone),
           InfoContactText(txt: 'Email', variable: contact.email),
-          InfoContactText(txt: 'BirthDay', variable: bd),
+          InfoContactText(txt: 'BirthDay', variable: bDay),
+          Row(
+            mainAxisAlignment: MainAxisAlignment.end,
+            children: [
+              TextButton(
+                onPressed: closeInfo,
+                child: Text(
+                  'Close',
+                  style: titleMediumTheme.copyWith(
+                    color: theme.colorScheme.error,
+                  ),
+                ),
+              ),
+            ],
+          )
         ],
       ),
     );

@@ -79,6 +79,8 @@ class _AddContactState extends State<AddContact> {
   @override
   Widget build(BuildContext context) {
     bool isFull = name != '';
+    var theme = Theme.of(context);
+    var titleSmallTheme = theme.textTheme.titleSmall!;
     return Container(
       width: double.infinity,
       padding: EdgeInsets.all(20),
@@ -93,7 +95,11 @@ class _AddContactState extends State<AddContact> {
                     name = value;
                   }),
                   decoration: InputDecoration(
-                    label: Text('Name'),
+                    label: Text(
+                      'Name',
+                      style: titleSmallTheme.copyWith(
+                          color: theme.colorScheme.error),
+                    ),
                   ),
                 ),
               ),
